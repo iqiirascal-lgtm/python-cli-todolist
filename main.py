@@ -36,7 +36,35 @@ def add_task():
 
 def update_status():
     """Fitur 3: Mengubah status task (Reezqee)"""
-    pass
+    show_tasks() # Kita tampilkan dulu daftar tugasnya agar user tahu nomornya
+    if not tasks:
+        return
+
+    try:
+        index = int(input("\nMasukkan nomor tugas yang ingin diubah statusnya: ")) - 1
+        if 0 <= index < len(tasks):
+            print("Pilih status baru:")
+            print("1. Pending")
+            print("2. Ongoing")
+            print("3. Done")
+            
+            status_choice = input("Pilih (1/2/3): ")
+            if status_choice == "1":
+                tasks[index]["status"] = "pending"
+            elif status_choice == "2":
+                tasks[index]["status"] = "ongoing"
+            elif status_choice == "3":
+                tasks[index]["status"] = "done"
+            else:
+                print("⚠️ Pilihan tidak valid.")
+                return
+            
+            print(f"✅ Status tugas '{tasks[index]['title']}' berhasil diperbarui!")
+        else:
+            print("❌ Nomor tugas tidak ditemukan.")
+    except ValueError:
+        print("❌ Masukkan angka yang valid.")
+        print("=" * 25)
 
 def delete_task():
     """Fitur 4: Menghapus task (Dariel)"""
@@ -92,6 +120,9 @@ def main():
         if choice == "1":
             show_tasks()
         elif choice == "2":
+            add_task()
+        elif choice == "3":
+            update_status()
             break
         else:
             print("⚠️ Pilihan tidak valid.")
