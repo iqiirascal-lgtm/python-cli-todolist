@@ -64,6 +64,7 @@ def update_status():
             print("❌ Nomor tugas tidak ditemukan.")
     except ValueError:
         print("❌ Masukkan angka yang valid.")
+        print("=" * 25)
 
 def delete_task():
     """Fitur 4: Menghapus task (Tugas Teman)"""
