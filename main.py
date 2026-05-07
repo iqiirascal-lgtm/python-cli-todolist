@@ -32,6 +32,7 @@ def add_task():
         }
         tasks.append(new_task)
         print(f"✅ Tugas '{title}' berhasil ditambahkan untuk {assignee}.")
+        print("-" * 25)
 
 def update_status():
     """Fitur 3: Mengubah status task (Reezqee)"""
