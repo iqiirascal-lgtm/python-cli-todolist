@@ -17,7 +17,22 @@ def show_tasks():
 
 def add_task():
     """Fitur 2: Menambahkan task baru (Reezqee)"""
-    pass
+    print("\n--- ➕ TAMBAH TUGAS BARU ---")
+    title = input("Masukkan judul tugas: ").strip()
+    assignee = input("Masukkan nama assignee (PIC): ").strip()
+    
+    if title == "" or assignee == "":
+        print("❌ Gagal: Judul dan Assignee tidak boleh kosong!")
+    else:
+        # Menambahkan data ke list tasks dalam bentuk dictionary
+        new_task = {
+            "title": title,
+            "assignee": assignee,
+            "status": "pending"  # Status default saat baru ditambah
+        }
+        tasks.append(new_task)
+        print(f"✅ Tugas '{title}' berhasil ditambahkan untuk {assignee}.")
+        print("-" * 25)
 
 def update_status():
     """Fitur 3: Mengubah status task (Reezqee)"""
@@ -77,13 +92,6 @@ def main():
         if choice == "1":
             show_tasks()
         elif choice == "2":
-            add_task()
-        elif choice == "3":
-            update_status()
-        elif choice == "4":      # <--- Pastikan ini juga ada
-            delete_task()
-        elif choice == "6":
-            print("Keluar dari program. Sampai jumpa!")
             break
         else:
             print("⚠️ Pilihan tidak valid.")
