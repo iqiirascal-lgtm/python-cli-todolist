@@ -5,7 +5,7 @@ def show_tasks():
     """Fitur 1: Menampilkan seluruh data yang ada"""
     print("\n--- 📋 DAFTAR TUGAS ---")
     if not tasks:
-        print("Daftar tugas masih kosong.")
+        print("---  Daftar tugas masih kosong ---")
     else:
         for i, task in enumerate(tasks, 1):
             # Mengambil data dari dictionary
