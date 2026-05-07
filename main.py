@@ -3,7 +3,17 @@ tasks = []
 
 def show_tasks():
     """Fitur 1: Menampilkan seluruh data yang ada"""
-    pass
+    print("\n--- 📋 DAFTAR TUGAS ---")
+    if not tasks:
+        print("---  Daftar tugas masih kosong ---")
+    else:
+        for i, task in enumerate(tasks, 1):
+            # Mengambil data dari dictionary
+            status = task.get("status", "pending").upper()
+            title = task.get("title", "Tanpa Judul")
+            assignee = task.get("assignee", "Belum ada")
+            print(f"{i}. [{status}] {title} - (PIC: {assignee})")
+    print("-" * 25)
 
 def add_task():
     """Fitur 2: Menambahkan task baru (Reezqee)"""
@@ -54,14 +64,7 @@ def main():
         choice = input("Pilih menu (1-6): ").strip()
         if choice == "1":
             show_tasks()
-        elif choice == "2":
-            add_task()
-        elif choice == "3":
-            update_status()
-        elif choice == "5":      # <--- Tambahkan logika pilihan ini
-            search_task()
         elif choice == "6":
-            print("Keluar dari program. Sampai jumpa!")
             break
         else:
             print("⚠️ Pilihan tidak valid.")
