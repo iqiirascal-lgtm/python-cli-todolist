@@ -3,7 +3,17 @@ tasks = []
 
 def show_tasks():
     """Fitur 1: Menampilkan seluruh data yang ada"""
-    pass
+    print("\n--- 📋 DAFTAR TUGAS ---")
+    if not tasks:
+        print("---  Daftar tugas masih kosong ---")
+    else:
+        for i, task in enumerate(tasks, 1):
+            # Mengambil data dari dictionary
+            status = task.get("status", "pending").upper()
+            title = task.get("title", "Tanpa Judul")
+            assignee = task.get("assignee", "Belum ada")
+            print(f"{i}. [{status}] {title} - (PIC: {assignee})")
+    print("-" * 25)
 
 def add_task():
     """Fitur 2: Menambahkan task baru (Reezqee)"""
@@ -31,8 +41,28 @@ def delete_task():
     print("-" * 25)
 
 def search_task():
-    """Fitur 5: Mencari task berdasarkan assignee (Tugas Teman)"""
-    pass
+    """Fitur 5: Mencari task berdasarkan assignee (Dariel)"""
+    if not tasks:
+        print("\n--- 🔍 PENCARIAN TUGAS ---")
+        print("---  Daftar tugas masih kosong ---")
+        return
+
+    keyword = input("\nMasukkan nama assignee yang dicari: ").strip().lower()
+    found = False
+
+    print(f"\n--- 🔍 HASIL PENCARIAN UNTUK '{keyword.upper()}' ---")
+    for i, task in enumerate(tasks, 1):
+        assignee = task.get("assignee", "Belum ada")
+        # Menggunakan .lower() agar pencarian tidak sensitif huruf besar/kecil
+        if keyword in assignee.lower():
+            status = task.get("status", "pending").upper()
+            title = task.get("title", "Tanpa Judul")
+            print(f"{i}. [{status}] {title} - (PIC: {assignee})")
+            found = True
+            
+    if not found:
+        print(f"❌ Tidak ada tugas yang ditemukan untuk assignee '{keyword}'.")
+    print("-" * 25)
 
 def main():
     while True:
