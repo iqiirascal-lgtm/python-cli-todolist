@@ -18,8 +18,28 @@ def delete_task():
     pass
 
 def search_task():
-    """Fitur 5: Mencari task berdasarkan assignee (Tugas Teman)"""
-    pass
+    """Fitur 5: Mencari task berdasarkan assignee (Dariel)"""
+    if not tasks:
+        print("\n--- 🔍 PENCARIAN TUGAS ---")
+        print("---  Daftar tugas masih kosong ---")
+        return
+
+    keyword = input("\nMasukkan nama assignee yang dicari: ").strip().lower()
+    found = False
+
+    print(f"\n--- 🔍 HASIL PENCARIAN UNTUK '{keyword.upper()}' ---")
+    for i, task in enumerate(tasks, 1):
+        assignee = task.get("assignee", "Belum ada")
+        # Menggunakan .lower() agar pencarian tidak sensitif huruf besar/kecil
+        if keyword in assignee.lower():
+            status = task.get("status", "pending").upper()
+            title = task.get("title", "Tanpa Judul")
+            print(f"{i}. [{status}] {title} - (PIC: {assignee})")
+            found = True
+            
+    if not found:
+        print(f"❌ Tidak ada tugas yang ditemukan untuk assignee '{keyword}'.")
+    print("-" * 25)
 
 def main():
     while True:
@@ -27,12 +47,24 @@ def main():
         print("1. Show Task")
         print("2. Add Task")
         print("3. Update Status")
+        # print("4. Delete Task") <--- (Ini tidak ada di sini karena kita mulai dari main yang bersih, biarkan saja)
+        print("5. Search Task")  # <--- Tambahkan teks menu ini
         print("6. Exit")
         
         choice = input("Pilih menu (1-6): ").strip()
-        if choice == "6": 
-            print("Sampai jumpa!")
+        if choice == "1":
+            show_tasks()
+        elif choice == "2":
+            add_task()
+        elif choice == "3":
+            update_status()
+        elif choice == "5":      # <--- Tambahkan logika pilihan ini
+            search_task()
+        elif choice == "6":
+            print("Keluar dari program. Sampai jumpa!")
             break
-
+        else:
+            print("⚠️ Pilihan tidak valid.")
+            
 if __name__ == "__main__":
     main()
